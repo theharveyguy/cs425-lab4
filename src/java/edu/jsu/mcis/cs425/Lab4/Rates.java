@@ -116,35 +116,29 @@ public class Rates {
              *
              * *** INSERT YOUR CODE HERE ***
              */
+            String[] header = new String[3];
             if (iterator.hasNext()){
-                iterator.next();
-            }// skips over first row
+                row = iterator.next();
+                System.arraycopy(row, 0, header, 0, row.length); //neat function, didn't know it existed, thanks NetBeans!
+            }// skips over first row and makes header row
             
             while (iterator.hasNext()){
-                /* TODO plan:
-                 * Use header to define object attributes:
-                 *     "Name", "Code", and "Rates" + "date" and "base"
-                 *     "date" = 2019-9-20
-                 *     "base" = "USD"
-                 * Assign all other rows to JSON object "rates"
-                 * Print to console via System.err.println()
-                 */
                 row = iterator.next();
-                rates.put("Name",row[0]);
-                rates.put("Code",row[1]);
-                rates.put("Rates",row[2]);
-                rates.put("Bate","2019-9-20");
-                rates.put("Base","USD");
-                
+                rates.put("rates", row[2]);
+                for (int i = 0; i < row.length; i++){
+                    json.put(header[i], row[i]);
+                    json.put("Date", "2019-9-20");
+                    json.put("Base", "USD");
+                }
             }
             
-            json.put("rates", rates);
+            //json.put("Rates", rates);
             
             /* Parse top-level container to a JSON string */
             
-            results = JSONValue.toJSONString(rates);
+            results = JSONValue.toJSONString(json);
             
-            System.err.println(results);//Test json data for accuracy
+            System.err.println(results);
             
         } // my work is in this method -MH
         catch (Exception e) { System.err.println( e.toString() ); }
