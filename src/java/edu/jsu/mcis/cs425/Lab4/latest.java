@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "latest", urlPatterns = {"/latest"})
 public class latest extends HttpServlet {
+    /*
+     * Displays rates data in a JSON object
+     */
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +42,7 @@ public class latest extends HttpServlet {
     @Override
     public String getServletInfo() {
         
-        return "Lab #4 Test Servlet";   
+        return "Lab #4 Latest Servlet";   
         
     }
     
