@@ -22,7 +22,6 @@ public class latest extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             
-            out.println("Servlet Test at " + request.getContextPath());
             out.println( Rates.getRatesAsJson( Rates.getRates(path)));
             
         }

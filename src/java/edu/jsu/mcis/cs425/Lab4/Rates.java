@@ -116,24 +116,22 @@ public class Rates {
              *
              * *** INSERT YOUR CODE HERE ***
              */
-            String[] header = new String[3];
             if (iterator.hasNext()){
-                row = iterator.next();
-                System.arraycopy(row, 0, header, 0, row.length); //neat function, didn't know it existed, thanks NetBeans!
-            }// skips over first row and makes header row
+                iterator.next();
+            }// skips over first row
             
             while (iterator.hasNext()){
                 row = iterator.next();
-                rates.put("rates", row[2]);
-                for (int i = 0; i < row.length; i++){
-                    json.put(header[i], row[i]);
-                    json.put("Date", "2019-9-20");
-                    json.put("Base", "USD");
-                }
+                Double rate = Double.parseDouble(row[2]); // converts the string rate data to double
+                rates.put(row[1], rate); // loads string code data and double rate data to rates JSON object
             }
             
-            //json.put("Rates", rates);
+            // put rates JSON object into json JSON object and adds Date and Base attributes
             
+            json.put("Rates", rates);
+            json.put("Date", "2019-9-20");
+            json.put("Base", "USD");
+
             /* Parse top-level container to a JSON string */
             
             results = JSONValue.toJSONString(json);
