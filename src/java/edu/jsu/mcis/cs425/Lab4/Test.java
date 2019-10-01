@@ -44,12 +44,12 @@ public class Test extends HttpServlet {
         doGet(request, response);
         
     }
-
+    
     @Override
     public String getServletInfo() {
         
-        return "Lab #4 Test Servlet";
+        return "Lab #4 Test Servlet";   
         
     }
-
+    
 }

@@ -1,7 +1,7 @@
 var Lab4 = ( function() {
-
+    
     return {
-
+        
         convert: function(rates) {
             
             /*
@@ -15,10 +15,12 @@ var Lab4 = ( function() {
              * currency codes, separated by colons and formatted to two decimal
              * places.  (See the screenshot given with this assignment.)
              */
+            
+            var output = "<p>";
 
             // INSERT YOUR CODE HERE
 
-        },
+        },//my work is in this method -MH
         
         getConversion: function() {
             
@@ -43,7 +45,7 @@ var Lab4 = ( function() {
                 success: function(response) {
                     that.convert(response);                    
                 }
-            });
+            }); 
             
         },
         
@@ -52,9 +54,9 @@ var Lab4 = ( function() {
             /* Output the current version of jQuery (for diagnostic purposes) */
             
             $('#output').html( "jQuery Version: " + $().jquery );
- 
+            
         }
-
+        
     };
-
+    
 }());

@@ -22,7 +22,7 @@ public class Rates {
         try {
             
             /* Open Rates File; Attach BufferedReader */
-
+            
             BufferedReader reader = new BufferedReader(new FileReader(path));
             
             /* Get File Data */
@@ -65,7 +65,7 @@ public class Rates {
             while (iterator.hasNext()) {
                 
                 /* Create Row */
-            
+                
                 row = iterator.next();
                 s.append("<tr>");
                 
@@ -116,14 +116,37 @@ public class Rates {
              *
              * *** INSERT YOUR CODE HERE ***
              */
+            if (iterator.hasNext()){
+                iterator.next();
+            }// skips over first row
+            
+            while (iterator.hasNext()){
+                /* TODO plan:
+                 * Use header to define object attributes:
+                 *     "Name", "Code", and "Rates" + "date" and "base"
+                 *     "date" = 2019-9-20
+                 *     "base" = "USD"
+                 * Assign all other rows to JSON object "rates"
+                 * Print to console via System.err.println()
+                 */
+                row = iterator.next();
+                rates.put("Name",row[0]);
+                rates.put("Code",row[1]);
+                rates.put("Rates",row[2]);
+                rates.put("Bate","2019-9-20");
+                rates.put("Base","USD");
+                
+            }
             
             json.put("rates", rates);
             
             /* Parse top-level container to a JSON string */
             
-            results = JSONValue.toJSONString(json);
+            results = JSONValue.toJSONString(rates);
             
-        }
+            System.err.println(results);//Test json data for accuracy
+            
+        } // my work is in this method -MH
         catch (Exception e) { System.err.println( e.toString() ); }
         
         /* Return JSON string */
@@ -131,5 +154,5 @@ public class Rates {
         return (results.trim());
         
     }
-
+    
 }
