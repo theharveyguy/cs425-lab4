@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "latest", urlPatterns = {"/latest"})
-public class latest extends HttpServlet {
+public class Latest extends HttpServlet {
     /*
      * Displays rates data in a JSON object
      */
@@ -25,7 +25,7 @@ public class latest extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             
-            out.println( Rates.getRatesAsJson( Rates.getRates(path)));
+            out.print(Rates.getRatesAsJson( Rates.getRates(path)));
             
         }
         

@@ -16,9 +16,23 @@ var Lab4 = ( function() {
              * places.  (See the screenshot given with this assignment.)
              */
             
+            var input = $('#input').val();
             var output = "<p>";
-
-            // INSERT YOUR CODE HERE
+            
+            for(var i = 0; i<rates.length; i++){
+                var line = "";
+                /* TODO plan:
+                 *  1. Multiply input by rate double (trim to 2 decimals?)
+                 *  2. For each line in the JSON object, make a new line of html
+                 *  3. Add line to the end of output
+                 *  4. After loop is finished show the output
+                 */
+                input = input * rates[1];
+                line+" "+rates[0]+" : "+input+"<p/>"+"\n"+"<p>";
+                concat(output, line);
+            }
+                        
+            $('#output').html(output + "\n Based on 2019-09-20 Exchange rates");
 
         },//my work is in this method -MH
         

@@ -116,9 +116,7 @@ public class Rates {
              *
              * *** INSERT YOUR CODE HERE ***
              */
-            if (iterator.hasNext()){
-                iterator.next();
-            }// skips over first row
+            row = iterator.next();
             
             while (iterator.hasNext()){
                 row = iterator.next();
@@ -126,7 +124,7 @@ public class Rates {
                 rates.put(row[1], rate); // loads string code data and double rate data to rates JSON object
             }
             
-            // put rates JSON object into json JSON object and adds Date and Base attributes
+            // put rates JSON object into json JSON object and add Date and Base attributes
             
             json.put("Rates", rates);
             json.put("Date", "2019-9-20");
