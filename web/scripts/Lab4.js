@@ -17,12 +17,13 @@ var Lab4 = ( function() {
              */
             
             var input = $('#input').val();
-            //var output = "<p>";
             
             for(var line in rates.Rates){
                 
+                // multiplies user input by the value of the current rate
                 input = input * rates.Rates.line.valueOf();
                 
+                // loads rate name and converted input into html paragraph tag at the end of output
                 $('#output').append("<p>");
                 $('#output').append().html(rates.Rates.toString()+" : "+input);
                 $('#output').append("</p>");
