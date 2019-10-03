@@ -9,27 +9,33 @@ var Lab4 = ( function() {
              * ("rates") as an argument.  It should: get the amount (in USD)
              * entered by the user in the "input" form field, iterate through
              * the currency exchange rates given in the data object, multiply
-             * each rateby the given number of U.S. Dollars, and compute the
+             * each rate by the given number of U.S. Dollars, and compute the
              * corresponding amount for each currency.  These amounts should be
              * shown in the "output" element of the page, along with the
              * currency codes, separated by colons and formatted to two decimal
              * places.  (See the screenshot given with this assignment.)
              */
             
+            var lastLine = ""
             var input = $('#input').val();
+            var line;
             
-            for(var line in rates.Rates){
+            for(line in rates.Rates){
+                // variable to build html line by concatenation
+                var htmlLine = "";
+                
+                // separate variable for user input for data integrity purposes
+                var origInput = input;
                 
                 // multiplies user input by the value of the current rate
-                input = input * rates.Rates.line.valueOf();
-                
-                // loads rate name and converted input into html paragraph tag at the end of output
-                $('#output').append("<p>");
-                $('#output').append().html(rates.Rates.toString()+" : "+input);
-                $('#output').append("</p>");
+                var converted = origInput * rates.Rates[line];
+                                
+                // loads rate name and converted input into html paragraph tag at the end of output element
+                htmlLine = htmlLine.concat("<p>",line," : ",converted,"</p>");
+                $('#output').append(htmlLine);
             }
-              
-            $('#output').append().html("\n Based on "+ rates.Date +" Exchange rates");
+            lastLine = lastLine.concat("<p> Based on ",rates.Date," Exchange rates </p>");
+            $('#output').append(lastLine);
 
         },//my work is in this method -MH
         
