@@ -16,11 +16,10 @@ var Lab4 = ( function() {
              * places.  (See the screenshot given with this assignment.)
              */
             
-            var lastLine = ""
-            var input = $('#input').val();
-            var line;
+            var lastLine = "" // variable to build final html line
+            var input = $('#input').val(); // user Input
             
-            for(line in rates.Rates){
+            for(var line in rates.Rates){
                 // variable to build html line by concatenation
                 var htmlLine = "";
                 
@@ -34,6 +33,8 @@ var Lab4 = ( function() {
                 htmlLine = htmlLine.concat("<p>",line," : ",converted,"</p>");
                 $('#output').append(htmlLine);
             }
+            
+            // loads Date data to last line
             lastLine = lastLine.concat("<p> Based on ",rates.Date," Exchange rates </p>");
             $('#output').append(lastLine);
 
