@@ -137,6 +137,7 @@ public class Rates {
             System.err.println(results);
             
         } // my work is in this method -MH
+        
         catch (Exception e) { System.err.println( e.toString() ); }
         
         /* Return JSON string */
@@ -144,5 +145,8 @@ public class Rates {
         return (results.trim());
         
     }
+    public static String getRatesAsJson(String code){
+        //TODO Pickup at #4
+    } //Lab4B's work is in here
     
 }
