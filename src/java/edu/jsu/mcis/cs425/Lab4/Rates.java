@@ -154,28 +154,20 @@ public class Rates {
         
     }
     public static String getRatesAsJson(String code){
-        
+        //db pool variables
         Database db = null;
         Connection connection;
-        
+        //SQL variables
+        String query;
         PreparedStatement pstatement = null;
         ResultSet resultset = null;
         boolean hasResult;
+        //JSON variables
         String results = "";
-        String query; // SQL query will be loaded into this variable when used
-        
         JSONObject json = new JSONObject();
         JSONObject rates = new JSONObject();
-        
-        /*
-         * Gameplan:
-         * 1. acquire connection from db pool
-         * 2. prepare/execute SQL query
-         * 3. collect data returned from the query
-         * 4. package data in JSON
-         */
+
         try{
-            // work goes here
             db = new Database();
             connection = db.getConnection();
             
@@ -196,6 +188,16 @@ public class Rates {
         }
         
         catch (Exception e) { System.err.println( e.toString() ); }
+        
+        finally {
+                        
+            if (resultset != null) { try { resultset.close(); resultset = null; } catch (Exception e) {} }
+            
+            if (pstatement != null) { try { pstatement.close(); pstatement = null; } catch (Exception e) {} }
+            
+            if (db != null) { db.closeConnection(); }
+            
+        }// Close db pool connection and clear db variables
         
         return(results.trim());
     } //Lab4B's work is in here -MH
