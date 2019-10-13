@@ -25,7 +25,7 @@ public class Latest extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             
-            out.print(Rates.getRatesAsJson( Rates.getRates(path)));
+            out.println(Rates.getRatesAsJson( request.getParameter("code")) );
             
         }
         
