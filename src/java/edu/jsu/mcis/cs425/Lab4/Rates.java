@@ -5,6 +5,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.StringReader;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
@@ -153,8 +155,17 @@ public class Rates {
     }
     public static String getRatesAsJson(String code){
         
+        Database db = null;
+        Connection connection;
+        
+        PreparedStatement pstatement = null;
+        ResultSet resultset = null;
+        boolean hasResult;
         String results = "";
         String query; // SQL query will be loaded into this variable when used
+        
+        JSONObject json = new JSONObject();
+        JSONObject rates = new JSONObject();
         
         /*
          * Gameplan:
@@ -165,6 +176,21 @@ public class Rates {
          */
         try{
             // work goes here
+            db = new Database();
+            connection = db.getConnection();
+            
+            query = "SELECT rate FROM rates WHERE code = "+code;
+            
+            pstatement = connection.prepareStatement(query);
+            hasResult = pstatement.execute();
+            
+            if (hasResult){
+                resultset = pstatement.getResultSet(); // only result should be rate data
+                rates.put(code, resultset);
+            }//collect data and package it in JSON, bow optional
+            json.put("Rates", rates);
+            json.put("Date", "2019-9-20");
+            json.put("Base", "USD");
             
             results = JSONValue.toJSONString(json);
         }
@@ -173,7 +199,6 @@ public class Rates {
         
         return(results.trim());
     } //Lab4B's work is in here -MH
-    
 }
 
 class Database{
@@ -189,7 +214,7 @@ class Database{
             conn = ds.getConnection();   
         }
         catch (SQLException e) {}
-    }
+    } // Constructor
     
     public void closeConnection() {
         if (conn != null) {
@@ -201,4 +226,4 @@ class Database{
     } // End closeConnection()
     
     public Connection getConnection() { return conn; }
-} // Database pool class, repurposed from Lab3B
+} // Database pool class, repurposed from Lab3B - MH
